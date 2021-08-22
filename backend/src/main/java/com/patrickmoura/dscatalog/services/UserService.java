@@ -1,31 +1,26 @@
 package com.patrickmoura.dscatalog.services;
 
-import java.util.Optional;
-
-import javax.persistence.EntityNotFoundException;
-
+import com.patrickmoura.dscatalog.dto.RoleDTO;
+import com.patrickmoura.dscatalog.dto.UserDTO;
+import com.patrickmoura.dscatalog.dto.UserInsertDTO;
+import com.patrickmoura.dscatalog.dto.UserUpdateDTO;
+import com.patrickmoura.dscatalog.entities.Role;
+import com.patrickmoura.dscatalog.entities.User;
+import com.patrickmoura.dscatalog.repositories.RoleRepository;
+import com.patrickmoura.dscatalog.repositories.UserRepository;
+import com.patrickmoura.dscatalog.services.exeptions.DataBaseException;
+import com.patrickmoura.dscatalog.services.exeptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.patrickmoura.dscatalog.dto.CategoryDTO;
-import com.patrickmoura.dscatalog.dto.RoleDTO;
-import com.patrickmoura.dscatalog.dto.UserDTO;
-import com.patrickmoura.dscatalog.dto.UserInsertDTO;
-import com.patrickmoura.dscatalog.entities.Category;
-import com.patrickmoura.dscatalog.entities.Role;
-import com.patrickmoura.dscatalog.entities.User;
-import com.patrickmoura.dscatalog.repositories.CategoryRepository;
-import com.patrickmoura.dscatalog.repositories.RoleRepository;
-import com.patrickmoura.dscatalog.repositories.UserRepository;
-import com.patrickmoura.dscatalog.services.exeptions.DataBaseException;
-import com.patrickmoura.dscatalog.services.exeptions.ResourceNotFoundException;
+import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -39,10 +34,15 @@ public class UserService {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
+	public UserService() {
+	}
+
 	@Transactional(readOnly = true)
 	public Page<UserDTO> findAllPaged(Pageable pageable) {
 		Page<User> list = repository.findAll(pageable);
-		return list.map(x -> new UserDTO(x));
+		return list.map(UserDTO::new);
+		//seria a mesma coisa que isto
+		//return list.map(x -> new UserDTO(x));
 	}
 
 	@Transactional(readOnly = true)
@@ -65,7 +65,7 @@ public class UserService {
 
 	
 	@Transactional
-	public UserDTO update(Long id, UserDTO dto) {
+	public UserDTO update(Long id, UserUpdateDTO dto) {
 		try {
 			User entity = repository.getOne(id);
 			copyDtotoEntity(dto, entity);

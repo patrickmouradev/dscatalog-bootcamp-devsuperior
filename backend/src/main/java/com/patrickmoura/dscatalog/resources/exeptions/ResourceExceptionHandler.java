@@ -56,9 +56,7 @@ public class ResourceExceptionHandler {
 		err.setError("Validation exception ");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
-		
-		
-		
+
 		return ResponseEntity.status(status).body(err);
 	}
 }
