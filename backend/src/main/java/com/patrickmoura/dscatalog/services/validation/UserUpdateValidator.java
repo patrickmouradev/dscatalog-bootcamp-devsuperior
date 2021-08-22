@@ -1,10 +1,9 @@
 package com.patrickmoura.dscatalog.services.validation;
 
-import com.patrickmoura.dscatalog.dto.UserInsertDTO;
 import com.patrickmoura.dscatalog.dto.UserUpdateDTO;
 import com.patrickmoura.dscatalog.entities.User;
 import com.patrickmoura.dscatalog.repositories.UserRepository;
-import com.patrickmoura.dscatalog.resources.exeptions.FieldMessage;
+import com.patrickmoura.dscatalog.controllers.exeptions.FieldMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 

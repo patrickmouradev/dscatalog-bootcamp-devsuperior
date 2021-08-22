@@ -28,7 +28,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.patrickmoura.dscatalog.dto.ProductDTO;
-import com.patrickmoura.dscatalog.resources.ProductResource;
+import com.patrickmoura.dscatalog.controllers.ProductResource;
 import com.patrickmoura.dscatalog.services.ProductService;
 import com.patrickmoura.dscatalog.services.exeptions.DataBaseException;
 import com.patrickmoura.dscatalog.services.exeptions.ResourceNotFoundException;

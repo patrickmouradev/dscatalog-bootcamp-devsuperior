@@ -1,4 +1,4 @@
-package com.patrickmoura.dscatalog.resources.exeptions;
+package com.patrickmoura.dscatalog.controllers.exeptions;
 
 import java.util.ArrayList;
 import java.util.List;

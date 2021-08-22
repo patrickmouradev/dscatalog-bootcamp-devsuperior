@@ -1,4 +1,4 @@
-package com.patrickmoura.dscatalog.resources.exeptions;
+package com.patrickmoura.dscatalog.controllers.exeptions;
 
 import java.io.Serializable;
 import java.time.Instant;
