@@ -1,4 +1,4 @@
-package com.patrickmoura.dscatalog.services.exeptions;
+package com.patrickmoura.dscatalog.services.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException{
 

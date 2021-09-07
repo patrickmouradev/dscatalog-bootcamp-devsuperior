@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +18,8 @@ import com.patrickmoura.dscatalog.entities.Category;
 import com.patrickmoura.dscatalog.entities.Product;
 import com.patrickmoura.dscatalog.repositories.CategoryRepository;
 import com.patrickmoura.dscatalog.repositories.ProductRepository;
-import com.patrickmoura.dscatalog.services.exeptions.DataBaseException;
-import com.patrickmoura.dscatalog.services.exeptions.ResourceNotFoundException;
+import com.patrickmoura.dscatalog.services.exceptions.DataBaseException;
+import com.patrickmoura.dscatalog.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ProductService {

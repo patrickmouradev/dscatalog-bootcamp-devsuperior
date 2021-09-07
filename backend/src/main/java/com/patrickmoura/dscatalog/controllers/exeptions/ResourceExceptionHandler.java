@@ -11,8 +11,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.patrickmoura.dscatalog.services.exeptions.DataBaseException;
-import com.patrickmoura.dscatalog.services.exeptions.ResourceNotFoundException;
+import com.patrickmoura.dscatalog.services.exceptions.DataBaseException;
+import com.patrickmoura.dscatalog.services.exceptions.ResourceNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {

@@ -30,8 +30,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.patrickmoura.dscatalog.dto.ProductDTO;
 import com.patrickmoura.dscatalog.controllers.ProductResource;
 import com.patrickmoura.dscatalog.services.ProductService;
-import com.patrickmoura.dscatalog.services.exeptions.DataBaseException;
-import com.patrickmoura.dscatalog.services.exeptions.ResourceNotFoundException;
+import com.patrickmoura.dscatalog.services.exceptions.DataBaseException;
+import com.patrickmoura.dscatalog.services.exceptions.ResourceNotFoundException;
 import com.patrickmoura.dscatalog.tests.Factory;
 
 @WebMvcTest(ProductResource.class)

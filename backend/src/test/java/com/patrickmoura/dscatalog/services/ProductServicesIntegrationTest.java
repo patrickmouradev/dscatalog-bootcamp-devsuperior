@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort;
 
 import com.patrickmoura.dscatalog.dto.ProductDTO;
 import com.patrickmoura.dscatalog.repositories.ProductRepository;
-import com.patrickmoura.dscatalog.services.exeptions.ResourceNotFoundException;
+import com.patrickmoura.dscatalog.services.exceptions.ResourceNotFoundException;
 
 @SpringBootTest
 @Transactional
