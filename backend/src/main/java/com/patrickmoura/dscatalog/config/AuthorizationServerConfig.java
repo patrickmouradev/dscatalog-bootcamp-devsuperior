@@ -31,7 +31,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private Integer jwtDuration;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     private JwtAccessTokenConverter accessTokenConverter;
@@ -53,11 +53,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient(clientId)
-                .secret(bCryptPasswordEncoder.encode(clientSecret))
+                .withClient(clientId) //nome da aplicação que precisa ser enviado pelo front
+                .secret(passwordEncoder.encode(clientSecret)) //senha que tem que ser enviada pelo pront
                 .scopes("read","write")
                 .authorizedGrantTypes("password")
-                .accessTokenValiditySeconds(jwtDuration);
+                .accessTokenValiditySeconds(jwtDuration); //24h
     }
 
     @Override

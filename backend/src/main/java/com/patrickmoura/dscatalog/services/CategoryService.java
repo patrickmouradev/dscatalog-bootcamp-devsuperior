@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.patrickmoura.dscatalog.entities.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.patrickmoura.dscatalog.dto.CategoryDTO;
-import com.patrickmoura.dscatalog.entities.Category;
 import com.patrickmoura.dscatalog.repositories.CategoryRepository;
 import com.patrickmoura.dscatalog.services.exceptions.DataBaseException;
 import com.patrickmoura.dscatalog.services.exceptions.ResourceNotFoundException;

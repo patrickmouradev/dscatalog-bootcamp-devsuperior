@@ -1,8 +1,8 @@
 package com.patrickmoura.dscatalog.dto;
 
-import java.io.Serializable;
-
 import com.patrickmoura.dscatalog.entities.Role;
+
+import java.io.Serializable;
 
 public class RoleDTO implements Serializable{
 

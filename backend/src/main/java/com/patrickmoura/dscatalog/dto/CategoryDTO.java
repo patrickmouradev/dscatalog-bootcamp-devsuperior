@@ -19,7 +19,7 @@ public class CategoryDTO implements Serializable {
     private Long id;
     private String name;
 
-    public CategoryDTO(@org.jetbrains.annotations.NotNull Category entity) {
+    public CategoryDTO( Category entity) {
         this.id = entity.getId();
         this.name = entity.getName();
     }

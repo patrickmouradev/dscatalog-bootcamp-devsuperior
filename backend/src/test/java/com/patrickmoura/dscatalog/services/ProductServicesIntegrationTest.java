@@ -25,6 +25,7 @@ public class ProductServicesIntegrationTest {
 	private long nonExintingId;
 	private long dependentId;
 	private long countTotalProducts;
+	private long categoryId;
 	
 	
 	@Autowired
@@ -40,6 +41,7 @@ public class ProductServicesIntegrationTest {
 		nonExintingId = 1000L;
 		dependentId = 4L;
 		countTotalProducts = 25L;
+		categoryId = 2l;
 		
 	
 	}
@@ -61,7 +63,7 @@ public class ProductServicesIntegrationTest {
 	@Test
 	public void findAllPagedShouldReturnPageWhenPage0Size10() {
 		Pageable pageable = PageRequest.of(0, 10);
-		Page<ProductDTO> result = service.findAllPaged(pageable);
+		Page<ProductDTO> result = service.findAllPaged(pageable,categoryId);
 		Assertions.assertFalse(result.isEmpty());
 		Assertions.assertEquals(0, result.getNumber());
 		Assertions.assertEquals(10, result.getSize());
@@ -71,7 +73,7 @@ public class ProductServicesIntegrationTest {
 	@Test
 	public void findAllPagedShouldReturnEmpytPageWhenPagedoesNotExist() {
 		Pageable pageable = PageRequest.of(50, 10);
-		Page<ProductDTO> result = service.findAllPaged(pageable);
+		Page<ProductDTO> result = service.findAllPaged(pageable,categoryId);
 		Assertions.assertTrue(result.isEmpty());
 		
 	}
@@ -79,7 +81,7 @@ public class ProductServicesIntegrationTest {
 	@Test
 	public void findAllPagedShouldReturnSortededPageWhenSortedByName() {
 		Pageable pageable = PageRequest.of(0, 10,Sort.by("name"));
-		Page<ProductDTO> result = service.findAllPaged(pageable);
+		Page<ProductDTO> result = service.findAllPaged(pageable,categoryId);
 		
 		Assertions.assertFalse(result.isEmpty());
 		Assertions.assertEquals("Macbook Pro", result.getContent().get(0).getName());

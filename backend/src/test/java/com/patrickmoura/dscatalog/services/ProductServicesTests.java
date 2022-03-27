@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.patrickmoura.dscatalog.entities.Category;
+import com.patrickmoura.dscatalog.entities.Product;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,8 +26,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.patrickmoura.dscatalog.dto.ProductDTO;
-import com.patrickmoura.dscatalog.entities.Category;
-import com.patrickmoura.dscatalog.entities.Product;
 import com.patrickmoura.dscatalog.repositories.CategoryRepository;
 import com.patrickmoura.dscatalog.repositories.ProductRepository;
 import com.patrickmoura.dscatalog.services.exceptions.DataBaseException;
@@ -86,7 +86,8 @@ public class ProductServicesTests {
 	@Test
 	public void findAllPagedShouldReturnPage() {
 		Pageable pageable = PageRequest.of(0, 10);
-		Page<ProductDTO> result = service.findAllPaged(pageable);
+		Long categoryId = 0L;
+		Page<ProductDTO> result = service.findAllPaged(pageable,categoryId);
 		
 		Assertions.assertNotNull(result);
 		Mockito.verify(repository, Mockito.times(1)).findAll(pageable);
