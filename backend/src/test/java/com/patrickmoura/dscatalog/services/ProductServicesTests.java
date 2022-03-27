@@ -50,6 +50,8 @@ public class ProductServicesTests {
 	private Product product;
 	private Category category;
 	private PageImpl<Product> page;
+	private String productName;
+	Long categoryId ;
 	
 	
 	@BeforeEach
@@ -60,6 +62,9 @@ public class ProductServicesTests {
 		product = Factory.creatProduct();
 		category = Factory.creatCategory();
 		page = new PageImpl<>(List.of(product));
+		productName = "";
+		categoryId = 0L;
+
 		
 		
 		Mockito.doNothing().when(repository).deleteById(exintingId);
@@ -86,8 +91,8 @@ public class ProductServicesTests {
 	@Test
 	public void findAllPagedShouldReturnPage() {
 		Pageable pageable = PageRequest.of(0, 10);
-		Long categoryId = 0L;
-		Page<ProductDTO> result = service.findAllPaged(pageable,categoryId);
+
+		Page<ProductDTO> result = service.findAllPaged(pageable,categoryId,productName);
 		
 		Assertions.assertNotNull(result);
 		Mockito.verify(repository, Mockito.times(1)).findAll(pageable);

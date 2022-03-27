@@ -45,8 +45,9 @@ public class ProductResourceTests {
 	private long exintingId;
 	private long nonExintingId;
 	private long dependentId;
-	
-	
+	private String productName;
+	private long categoryId;
+
 	@MockBean
 	private ProductService productService;
 	
@@ -59,11 +60,13 @@ public class ProductResourceTests {
 		exintingId = 1L;
 		nonExintingId = 1000L;
 		dependentId = 4L;
+		categoryId = 2l;
+		productName = "";
 		
 		productDTO = Factory.createProductDTO();
 		page = new PageImpl<>(List.of(productDTO));
 		
-		when(productService.findAllPaged(any(),2L)).thenReturn(page);
+		when(productService.findAllPaged(any(),categoryId,productName)).thenReturn(page);
 		
 		when(productService.findById(exintingId)).thenReturn(productDTO);
 		when(productService.findById(nonExintingId)).thenThrow(ResourceNotFoundException.class);
