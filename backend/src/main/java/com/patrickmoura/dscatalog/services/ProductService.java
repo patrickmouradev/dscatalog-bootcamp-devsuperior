@@ -1,5 +1,7 @@
 package com.patrickmoura.dscatalog.services;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -34,10 +36,10 @@ public class ProductService {
 	@Transactional(readOnly = true)
 	public Page<ProductDTO> findAllPaged(Pageable pageable, Long categoryId, String productName) {
 
-		Category category = categoryId == 0 ? null : categoryRepository.getOne(categoryId);
-		Page<Product> list = repository.find(category, productName.toUpperCase(), pageable);
-
-		return list.map(x -> new ProductDTO(x));
+		List<Category> listCategories = categoryId == 0 ? null : Arrays.asList(categoryRepository.getOne(categoryId));
+		Page<Product> list = repository.find(listCategories, productName.toUpperCase(), pageable);
+		repository.findProductWithCategories(list.getContent());
+		return list.map(x -> new ProductDTO(x,x.getCategories()));
 	}
 
 	@Transactional(readOnly = true)

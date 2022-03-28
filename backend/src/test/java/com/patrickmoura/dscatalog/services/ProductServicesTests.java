@@ -1,6 +1,6 @@
 package com.patrickmoura.dscatalog.services;
 
-
+import static org.mockito.ArgumentMatchers.any;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -80,10 +80,12 @@ public class ProductServicesTests {
 		Mockito.when(categoryRepository.getOne(exintingId)).thenReturn(category);
 		Mockito.when(categoryRepository.getOne(nonExintingId)).thenThrow(EntityNotFoundException.class);
 		
-		Mockito.when(repository.findAll((Pageable)ArgumentMatchers.any())).thenReturn(page);
-		Mockito.when(repository.save(ArgumentMatchers.any())).thenReturn(product);
+		Mockito.when(repository.findAll((Pageable)any())).thenReturn(page);
+		Mockito.when(repository.save(any())).thenReturn(product);
 		Mockito.when(repository.findById(exintingId)).thenReturn(Optional.of(product));
 		Mockito.when(repository.findById(nonExintingId)).thenReturn(Optional.empty());
+
+		Mockito.when(repository.find(any(),any(),any())).thenReturn(page);
 
 		}
 	
@@ -95,8 +97,7 @@ public class ProductServicesTests {
 		Page<ProductDTO> result = service.findAllPaged(pageable,categoryId,productName);
 		
 		Assertions.assertNotNull(result);
-		Mockito.verify(repository, Mockito.times(1)).findAll(pageable);
-		
+
 	}
 	
 	@Test

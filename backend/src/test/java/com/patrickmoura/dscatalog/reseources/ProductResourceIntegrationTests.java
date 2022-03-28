@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import javax.transaction.Transactional;
 
+import com.patrickmoura.dscatalog.tests.TokenUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,11 +39,17 @@ public class ProductResourceIntegrationTests {
 	private long nonExintingId;
 	private long dependentId;
 	private long countTotalProducts;
+	private String userName;
+	private String password;
 	
 	@Autowired
 	private MockMvc mockMvc;
-	
-	
+
+	@Autowired
+	private TokenUtil tokenUtil;
+
+
+
 	@Autowired
 	private ProductService service;
 	
@@ -59,6 +66,8 @@ public class ProductResourceIntegrationTests {
 		nonExintingId = 1000L;
 		dependentId = 4L;
 		countTotalProducts = 25L;
+		userName = "alex@gmail.com";
+		password = "123456";
 		
 	
 	}
@@ -85,11 +94,14 @@ public class ProductResourceIntegrationTests {
 		String jsonBody = objMapper.writeValueAsString(productDTO);
 		String expectedName = productDTO.getName();
 		String expectedDescription = productDTO.getDescription();
+
+		String accessToken = tokenUtil.obtainAccessToken(mockMvc, userName, password);
 		
 		ResultActions result = mockMvc.perform(
 					put("/products/{id}",exintingId)
 					.content(jsonBody)
 					.contentType(MediaType.APPLICATION_JSON)
+							.header("Authorization", "Bearer " + accessToken)
 					.accept(MediaType.APPLICATION_JSON)
 					);
 		
@@ -104,11 +116,13 @@ public class ProductResourceIntegrationTests {
 	public void updateShouldReturnNotFoundWhenWhenIdDoesNotExists() throws Exception{
 		ProductDTO productDTO = Factory.createProductDTO();
 		String jsonBody = objMapper.writeValueAsString(productDTO);
+		String accessToken = tokenUtil.obtainAccessToken(mockMvc, userName, password);
 		
 		
 		ResultActions result = mockMvc.perform(
 					put("/products/{id}",nonExintingId)
 					.content(jsonBody)
+							.header("Authorization", "Bearer " + accessToken)
 					.contentType(MediaType.APPLICATION_JSON)
 					.accept(MediaType.APPLICATION_JSON)
 					);

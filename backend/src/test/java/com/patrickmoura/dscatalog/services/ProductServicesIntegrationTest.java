@@ -2,6 +2,7 @@ package com.patrickmoura.dscatalog.services;
 
 import javax.transaction.Transactional;
 
+import com.patrickmoura.dscatalog.tests.TokenUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,9 @@ public class ProductServicesIntegrationTest {
 	
 	@Autowired
 	private ProductRepository repository;
+
+	@Autowired
+	private TokenUtil tokenUtil;
 	
 	@BeforeEach
 	void setUp() throws Exception {
