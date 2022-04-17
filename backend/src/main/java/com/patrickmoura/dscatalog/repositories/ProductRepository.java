@@ -13,8 +13,10 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
-    @Query( "SELECT DISTINCT obj FROM Product obj INNER JOIN obj.categories cat WHERE( COALESCE(:listCategories) IS NULL OR cat IN :listCategories  ) AND (UPPER(obj.name) LIKE CONCAT('%',:productName,'%')) ")
-    Page<Product> find(List<Category> listCategories, String productName, Pageable pageable);
+    @Query( "SELECT DISTINCT obj FROM Product obj INNER JOIN obj.categories cat WHERE " +
+            "( COALESCE(:listCategories) IS NULL OR cat IN :listCategories  ) AND " +
+            "(UPPER(obj.name) LIKE UPPER(CONCAT('%',:name,'%'))) ")
+    Page<Product> find(List<Category> listCategories, String name, Pageable pageable);
 
 
     @Query( "SELECT obj FROM Product obj JOIN FETCH obj.categories cat WHERE obj IN :listProducts")
