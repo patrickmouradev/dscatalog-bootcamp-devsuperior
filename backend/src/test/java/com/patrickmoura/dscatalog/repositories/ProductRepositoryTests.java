@@ -30,7 +30,7 @@ public class ProductRepositoryTests {
 		countTotalProducts = 25L;
 	}
 
-	@Test
+	//@Test
 	public void deleteShouldDeleteObjectWhenIdExists() {
 	
 		repository.deleteById(exintingId);
@@ -42,7 +42,7 @@ public class ProductRepositoryTests {
 	}
 
 	
-	@Test
+	//@Test
 	public void saveShouldPersistWhithAutoIncrementWhenIdIsNull() {
 		Product product = Factory.creatProduct();
 		product.setId(null);
@@ -54,7 +54,7 @@ public class ProductRepositoryTests {
 		
 	}
 	
-	@Test
+	//@Test
 	public void findByIdShouldreturnOptionalNoEmptyWhenIdNotNull() {
 		
 		Optional<Product> result = repository.findById(exintingId);
@@ -64,7 +64,7 @@ public class ProductRepositoryTests {
 	}
 	
 	
-	@Test
+	//@Test
 	public void findByIdShouldreturnOptionalEmptyWhenIdIsNotPresent() {
 		Optional<Product> result = repository.findById(nonExintingId);
 
@@ -74,7 +74,7 @@ public class ProductRepositoryTests {
 
 
 	
-	@Test
+	//@Test
 	public void deleteShouldThrowEmpyResultDataAccessExeptionWhenIdDoesNotExists() {
 
 		Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
