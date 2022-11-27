@@ -1,10 +1,29 @@
 import {ReactComponent as ArrowIcon} from "assets/images/arrow.svg";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import ProductPrice from "../../components/ProductPrice";
 
 import './styles.css'
+import {Product} from "../../types/product";
+import axios from "axios";
+import {BASE_URL} from "../../util/requests";
+import {useEffect, useState} from "react";
 
+type UrlParams ={
+    productId: string;
+}
 const ProductDetails = () => {
+
+    const {productId} = useParams<UrlParams>();
+
+    const [product, setProduct] = useState<Product>();
+
+    useEffect(()=>{
+        axios.get(`${BASE_URL}/products/${productId}`)
+            .then(response=>{
+               setProduct(response.data)
+            });
+    },[productId]);
+
     return (
         <div className={"product-datails-container"}>
             <div className={"base-card product-datails-card"}>
@@ -18,18 +37,18 @@ const ProductDetails = () => {
                     <div className={"col-xl-6"}>
                         <div className={"img-container"}>
                             <img
-                                src={"https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg"}
-                                alt={"Nome do Produto"}/>
+                                src={product?.imgUrl}
+                                alt={product?.name}/>
                         </div>
                         <div className={"name-price-container"}>
-                            <h1>Nome do Produto</h1>
-                            <ProductPrice price={22222.26}/>
+                            <h1>{product?.name}</h1>
+                            {product && <ProductPrice price={product?.price}/>}
                         </div>
                     </div>
                     <div className={"col-xl-6"}>
                         <div className={"description-container"}>
                             <h2>Descricao do Produto</h2>
-                            <p>TESSSFUSFUIS</p>
+                            <p>{product?.description}</p>
                         </div>
                     </div>
                 </div>
