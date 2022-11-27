@@ -1,4 +1,4 @@
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Calatog from "./pages/Calatog";
@@ -19,12 +19,13 @@ const Routes = () => {
                 <Route path={"/products/:productId"}>
                     <ProductDetails/>
                 </Route>
-                <Route path={"/admin"}>
-                    <Admin/>
-                </Route>
+                <Redirect from={"/admin"} to={"/admin/products"} exact />
+                    <Route path={"/admin"}>
+                        <Admin/>
+                    </Route>
             </Switch>
         </BrowserRouter>
-    );
+);
 }
 
 export default Routes;

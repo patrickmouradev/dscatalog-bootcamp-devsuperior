@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
 import {Product} from "../../types/product";
+import Pagination from "../../components/Pagination/indes";
 
 import "./styles.css"
 
@@ -54,6 +55,10 @@ const Calatog = () => {
                         <ProductCard product={product}/>
                     </Link>
                 </div>
+            </div>
+            <div className={"row"}>
+                <Pagination/>
+
             </div>
         </div>
     );
