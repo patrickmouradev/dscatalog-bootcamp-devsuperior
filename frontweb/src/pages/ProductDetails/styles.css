@@ -1,12 +1,10 @@
 .product-datails-container {
     padding: 10px;
     font-size: 24px;
-    border: 1px solid red;
 }
 
 .product-datails-card {
     padding: 10px;
-    border: 1px solid red;
 }
 
 .goback-container {
@@ -14,8 +12,6 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    border: 1px solid red;
-
 }
 
 .goback-container svg {
@@ -35,9 +31,11 @@
 }
 
 .img-container {
+    padding: 10px;
+    border: 1px solid #E1E1E1;
+    border-radius: 20px;
     margin-bottom: 20px;
     text-align: center;
-    border: 1px solid red;
 }
 
 .img-container img {
@@ -46,7 +44,6 @@
 
 .name-price-container {
     margin-bottom: 20px;
-    border: 1px solid red;
 }
 .name-price-container h1{
     font-size: 1.1em;
@@ -55,8 +52,9 @@
 }
 
 .description-container {
-    margin-bottom: 20px;
-    border: 1px solid red;
+    padding: 10px;
+    border: 1px solid #E1E1E1;
+    border-radius: 20px;
 }
 
 .description-container h2{
@@ -71,4 +69,71 @@
     letter-spacing: -0.015em;
     font-size: 0.6em;
 
+}
+
+@media (min-width: 576px) {
+    .product-datails-container {
+        padding: 20px;
+        font-size: 32px;
+    }
+    .product-datails-card {
+        padding: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+
+    .product-datails-container {
+        padding: 40px;
+
+    }
+    .product-datails-card {
+        padding: 40px;
+    }
+
+    .img-container img {
+        width: 50%;
+    }
+
+    .description-container {
+        padding: 40px;
+
+    }
+
+    .name-price-container{
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+}
+
+@media (min-width: 1200px) {
+
+    .img-container img {
+        height: 280px;
+        width: auto;
+    }
+
+    .name-price-container{
+        display: block;
+
+    }
+    .description-container {
+       min-width: 302px;
+
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .img-container img {
+        height: 480px;
+        width: auto;
+    }
+
+    .description-container {
+        min-width: 502px;
+
+    }
 }
