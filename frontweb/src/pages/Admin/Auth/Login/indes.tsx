@@ -41,18 +41,18 @@ const Login = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
                     <input
-                        {...register("username",
+                        {...register("username", //o register esta vindo do useForm  , o nome do campo é de acordo com o type FormData declarado
                             {
-                                required: 'Campo Obrigatorio',
+                                required: 'Campo Obrigatorio', //mensagem no campo requerido que não está preenchido
                                 pattern: {
-                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                    message: 'Email Inválido'
+                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, //partener de validação de email
+                                    message: 'Email Inválido' //mensagem para caso oq esta sendo digitado no input esteja errado
                                 }
                             })}
                         type="text"
-                        className="form-control base-input"
+                        className={`form-control base-input ${errors.username? 'is-invalid':''}`}//condição ternaria para aparecer a borda de invalida no input
                         placeholder="Email"
-                        name="username"
+                        name="username" // o name tem que ser o mesmo do typeFormdata e do register
 
                     />
                     <div className={"invalid-feedback d-block"}>{errors.username?.message}</div>
@@ -64,7 +64,7 @@ const Login = () => {
                                 required: 'Campo Obrigatorio'
                             })}
                         type="password"
-                        className="form-control base-input "
+                        className={`form-control base-input ${errors.password? 'is-invalid':''}`} //condição ternaria para aparecer a borda de invalida no input
                         placeholder="Password"
                         name="password"
                     />
