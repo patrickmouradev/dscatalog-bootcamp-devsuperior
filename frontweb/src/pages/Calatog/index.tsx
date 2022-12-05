@@ -6,31 +6,32 @@ import Pagination from "../../components/Pagination/indes";
 import "./styles.css"
 import {useEffect, useState} from "react";
 import {SpringPage} from "../../types/vendor/spring";
-import {AxiosParams} from "../../types/vendor/axios";
+
 import {BASE_URL} from "../../util/requests";
-import axios from "axios";
+import axios, {AxiosRequestConfig} from "axios";
 import CardLoader from "./CardLoader";
 
 const Calatog = () => {
 
-    const [page, setPage] =useState<SpringPage<Product>>()
-    const [isLoading, setIsLoading] =useState(false)
+    const [page, setPage] = useState<SpringPage<Product>>()
+    const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(()=>{
-        const params :AxiosParams = {
+    useEffect(() => {
+        const params: AxiosRequestConfig = {
             method: "GET",
-            url: `${BASE_URL}/products`,
-            params:{
-                page:0,
+            baseURL: BASE_URL,
+            url: `/products`,
+            params: {
+                page: 0,
                 size: 12
             },
         }
         setIsLoading(true)
         axios(params).then(
-          response=> {
-              setPage( response.data);
-          }
-        ).finally(() =>{
+            response => {
+                setPage(response.data);
+            }
+        ).finally(() => {
             setIsLoading(false)
         });
     }, [])
@@ -41,16 +42,16 @@ const Calatog = () => {
                 <h1>Catalogo de Produtos</h1>
             </div>
             <div className={"row"}>
-                { isLoading ? <CardLoader/> :(
-                page?.content.map( product => {
-                    return(
-                        <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
-                            <Link to="products/1">
-                                <ProductCard product={product}/>
-                            </Link>
-                        </div>
+                {isLoading ? <CardLoader/> : (
+                    page?.content.map(product => {
+                        return (
+                            <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
+                                <Link to="products/1">
+                                    <ProductCard product={product}/>
+                                </Link>
+                            </div>
                         )
-                }))}
+                    }))}
 
             </div>
             <div className={"row"}>
