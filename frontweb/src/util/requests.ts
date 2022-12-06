@@ -1,6 +1,7 @@
 import qs from "qs";
 import axios, {AxiosRequestConfig} from "axios";
 import history from "./history";
+import jwtDecode from 'jwt-decode'
 
 type LoginResponse =
     {
@@ -20,6 +21,13 @@ const tokenKey = 'authData'
 type LoginData = {
     username: string;
     password: string;
+}
+type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN'
+
+type TokenData = {
+    exp: number,
+    user_name: string,
+    authorities: Role[]
 }
 
 export const requestBackendLogin = (loginData: LoginData) => {
@@ -83,4 +91,22 @@ axios.interceptors.response.use(function (response) {
     }
     return Promise.reject(error);
 });
+
+export  const  getTokenData = () : TokenData | undefined => {   //deve retornor um tipo TokenData ou undefined
+    const loginResponse = getAuthData();
+    try {
+        return jwtDecode(loginResponse.access_token) as TokenData;
+    }
+    catch (error) {
+        return undefined;
+    }
+
+
+}
+
+//Funcao para saber se o token esta expirado / não autenticado
+export const isAtuthenticated =() : boolean  =>{
+    const tokenData = getTokenData();
+    return (tokenData && tokenData.exp *1000 > Date.now()) ? true : false;
+}
 
