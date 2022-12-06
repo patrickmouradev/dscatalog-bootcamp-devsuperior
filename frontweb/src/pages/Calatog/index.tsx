@@ -1,15 +1,16 @@
 import {Link} from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
-import {Product} from "../../types/product";
+import {requestBackend} from "../../util/requests";
+import CardLoader from "./CardLoader";
 import Pagination from "../../components/Pagination/indes";
-
-import "./styles.css"
 import {useEffect, useState} from "react";
 import {SpringPage} from "../../types/vendor/spring";
+import {Product} from "../../types/product";
+import {AxiosRequestConfig} from "axios";
 
-import {BASE_URL} from "../../util/requests";
-import axios, {AxiosRequestConfig} from "axios";
-import CardLoader from "./CardLoader";
+
+import "./styles.css"
+
 
 const Calatog = () => {
 
@@ -19,7 +20,6 @@ const Calatog = () => {
     useEffect(() => {
         const params: AxiosRequestConfig = {
             method: "GET",
-            baseURL: BASE_URL,
             url: `/products`,
             params: {
                 page: 0,
@@ -27,7 +27,7 @@ const Calatog = () => {
             },
         }
         setIsLoading(true)
-        axios(params).then(
+        requestBackend(params).then(
             response => {
                 setPage(response.data);
             }

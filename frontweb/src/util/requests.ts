@@ -1,5 +1,5 @@
 import qs from "qs";
-import axios from "axios";
+import axios, {AxiosRequestConfig} from "axios";
 
 type LoginResponse =
     {
@@ -41,6 +41,12 @@ export const requestBackendLogin = (loginData: LoginData) => {
     })
 }
 
+export const requestBackend = (config : AxiosRequestConfig) => {
+
+    return axios({...config, baseURL : BASE_URL}); //... spred opaator para desconstruir o obj
+
+}
+
 export const saveAuthData = (loginResponse: LoginResponse) => {
     localStorage.setItem(tokenKey, JSON.stringify(loginResponse));
 }
@@ -51,3 +57,4 @@ export  const getAuthData = () =>{
 
     return loginResponse as LoginResponse; //para garantir a resposta seja LoginResponse
 }
+
