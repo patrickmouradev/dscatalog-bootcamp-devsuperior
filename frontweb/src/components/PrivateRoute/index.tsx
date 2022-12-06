@@ -1,6 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
 import { isAuthenticated } from 'util/requests';
-import React from "react";
 
 type Props = {
     children: React.ReactNode;
@@ -10,16 +9,13 @@ type Props = {
 const PrivateRoute = ({ children, path }: Props) => {
 
     return (
-
-        <Route path={path}>
-            <Children renderiza={isAuthenticated()}/>
-
-        </Route>
+        <Route
+            path={path}
+            render={() =>
+                isAuthenticated() ? children : <Redirect to="/admin/auth/login" />
+            }
+        />
     );
 };
-
-function Children (rendereiza : boolean){
-
-}
 
 export default PrivateRoute;
