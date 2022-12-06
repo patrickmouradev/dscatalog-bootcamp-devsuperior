@@ -25,7 +25,7 @@ const Users = () => {
     return (
         <div>
             {page?.content.map((item) => (
-                <p key={item.id}>{item.email}</p>
+                <p key={item.id}> {item.email}</p>
             ))}
         </div>
     );
