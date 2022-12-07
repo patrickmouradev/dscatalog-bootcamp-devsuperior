@@ -7,17 +7,13 @@ type Props = {
     path?: string;
 };
 
-const Outlet = ({children} : Props) => {
-    return <>{children}</>
-}
-
 const PrivateRoute = ({ children, path }:Props) => {
 
     return (
          <Route
              path={path}
              render={() =>
-                             isAuthenticated() ? <Outlet> {children}</Outlet> : <Redirect to="/admin/auth/login" />
+                             isAuthenticated() ? <>{children}</> : <Redirect to="/admin/auth/login" />
                          }
 //             render={() => {
 //             if(!children || !Object.keys(children).length) return <Redirect to="/admin/auth/login"/>
@@ -33,3 +29,7 @@ const PrivateRoute = ({ children, path }:Props) => {
 
 
 export default PrivateRoute;
+
+const Outlet = ({children} : Props) => {
+    return <>{children}</>
+}
