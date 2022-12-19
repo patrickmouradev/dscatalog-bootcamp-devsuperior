@@ -12,24 +12,19 @@ const PrivateRoute = ({ children, path }:Props) => {
     return (
          <Route
              path={path}
-             render={() =>
-                             isAuthenticated() ? <>{children}</> : <Redirect to="/admin/auth/login" />
-                         }
-//             render={() => {
-//             if(!children || !Object.keys(children).length) return <Redirect to="/admin/auth/login"/>
-//             return  isAuthenticated() ? <Outlet> {children}</Outlet> : <Redirect to="/admin/auth/login"/>
-//             }
-//
-//             }
+             render={({location}) =>
+                             isAuthenticated() ?
+                                 //Se tiver authenticado renderizza o filho
+                                 <>{children}</>
+                                 :
+                                 //se não joga para tela de login e depois volta para a pagina que estava tentando acessar
+                                 <Redirect to={{
+                                     pathname: "/admin/auth/login",
+                                     state:{from:location}
+                                 }}/>
+             }
          />
      );
 };
 
-
-
-
 export default PrivateRoute;
-
-const Outlet = ({children} : Props) => {
-    return <>{children}</>
-}

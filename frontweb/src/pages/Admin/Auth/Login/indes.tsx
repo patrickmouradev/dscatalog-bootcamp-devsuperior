@@ -1,4 +1,4 @@
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useHistory, useLocation} from 'react-router-dom';
 import ButtonIcon from 'components/ButtonIcon';
 import {useForm} from "react-hook-form";
 
@@ -7,15 +7,22 @@ import {getAuthData, getTokenData, requestBackendLogin, saveAuthData} from "../.
 import {useContext, useState} from "react";
 import {AuthContext} from "../../../../AuthContext";
 
+type FormData = {
+    username: string;
+    password: string;
+}
+
+type LocationState ={
+    from : string;
+}
 
 const Login = () => {
 
-    const {setAuthContextData} =useContext(AuthContext);
+    const  location = useLocation<LocationState>();
 
-    type FormData = {
-        username: string;
-        password: string;
-    }
+    const {from} = location.state || {from : {pathname: '/admim'}};
+
+    const {setAuthContextData} =useContext(AuthContext);
 
     const [hasError, setHasError] = useState(false);
 
@@ -36,7 +43,7 @@ const Login = () => {
                     tokenData: getTokenData()
                 })
 
-                history.push('/admin')
+                history.replace(from)  //replace subisttui a rota e o push empilha
                 console.log('SUCESSO', response);
             })
             .catch(error => {
