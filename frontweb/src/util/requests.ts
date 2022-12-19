@@ -24,7 +24,7 @@ type LoginData = {
 }
 type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN'
 
-type TokenData = {
+export type TokenData = {
     exp: number,
     user_name: string,
     authorities: Role[]
@@ -69,6 +69,10 @@ export const getAuthData = () => {
     const loginResponse = JSON.parse(str);
 
     return loginResponse as LoginResponse; //para garantir a resposta seja LoginResponse
+}
+
+export const removeAuthData = () => {
+    localStorage.removeItem(tokenKey);
 }
 
 // Adicionar Interceptor antes da Request para validações

@@ -1,8 +1,45 @@
 import './styles.css';
 import 'bootstrap/js/src/collapse.js'
 import {Link,NavLink} from 'react-router-dom'
+import {getTokenData, isAuthenticated, removeAuthData, TokenData} from "../../util/requests";
+import history from 'util/history';
+import React, {useEffect, useState} from "react";
 
-function Navbar() {
+
+type AuthData = {
+    authenticated : boolean,
+    tokenData? : TokenData
+}
+
+const Navbar = () => {
+
+    const [authData, setAuthData] = useState<AuthData>({authenticated:false});
+
+    useEffect(()=>{
+        if(isAuthenticated()){
+            setAuthData({
+                authenticated:true,
+                tokenData: getTokenData()
+            })
+        }else{
+            setAuthData({
+                authenticated:false
+            })
+        }
+
+
+    },[]);
+
+    const logoutHandleClik =( event : React.MouseEvent<HTMLAnchorElement>) => { //evento do clicke do Mouse
+        event.preventDefault(); //para não percorrer no link
+        removeAuthData();
+        setAuthData({
+            authenticated:false
+        });
+        history.replace('/')
+
+    }
+
     return (
         <nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">
             <div className="container-fluid">
@@ -33,6 +70,23 @@ function Navbar() {
                             <NavLink to="/admin" activeClassName={"active"}>ADMIN</NavLink>
                         </li>
                     </ul>
+                </div>
+                <div className={"nav-login-logout"}>
+                    {
+                        authData.authenticated ?
+                            //se AUTENTICADO
+                            (  <>
+                                <span className={"nav-login-logout-spam"}>{authData.tokenData?.user_name}</span>
+                                <a href={"#logout"} onClick={logoutHandleClik}> LOGOUT</a>
+                                </>
+                            )
+                            :
+                            //se NÃO AUTENTICADO
+                            (
+                                <Link to={"/admin/auth"}> LOGIN</Link>
+                            )
+                    }
+
                 </div>
             </div>
         </nav>

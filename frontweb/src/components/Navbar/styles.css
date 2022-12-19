@@ -32,3 +32,37 @@
     color: #FFF;
     font-weight: 700;
 }
+.nav-login-logout{
+    display: none;
+}
+
+.nav-login-logout-spam{
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .nav-login-logout{
+        display: unset;
+        color: #FFFFFF;
+        margin-right: 15px;
+    }
+
+
+}
+
+@media (min-width: 992px) {
+    .nav-login-logout{
+        margin-right: 40px;
+    }
+
+    .nav-login-logout-spam{
+        display: unset;
+        margin-right: 20px;
+    }
+
+
+}
+
+
+
+
