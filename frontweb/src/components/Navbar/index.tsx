@@ -3,7 +3,8 @@ import 'bootstrap/js/src/collapse.js'
 import {Link,NavLink} from 'react-router-dom'
 import {getTokenData, isAuthenticated, removeAuthData, TokenData} from "../../util/requests";
 import history from 'util/history';
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
+import {AuthContext} from "../../AuthContext";
 
 
 type AuthData = {
@@ -13,27 +14,27 @@ type AuthData = {
 
 const Navbar = () => {
 
-    const [authData, setAuthData] = useState<AuthData>({authenticated:false});
+    const {authContextData, setAuthContextData} =useContext(AuthContext);
 
     useEffect(()=>{
         if(isAuthenticated()){
-            setAuthData({
+            setAuthContextData({
                 authenticated:true,
                 tokenData: getTokenData()
             })
         }else{
-            setAuthData({
+            setAuthContextData({
                 authenticated:false
             })
         }
 
 
-    },[]);
+    },[setAuthContextData]);
 
     const logoutHandleClik =( event : React.MouseEvent<HTMLAnchorElement>) => { //evento do clicke do Mouse
         event.preventDefault(); //para não percorrer no link
         removeAuthData();
-        setAuthData({
+        setAuthContextData({
             authenticated:false
         });
         history.replace('/')
@@ -73,10 +74,10 @@ const Navbar = () => {
                 </div>
                 <div className={"nav-login-logout"}>
                     {
-                        authData.authenticated ?
+                        authContextData.authenticated ?
                             //se AUTENTICADO
                             (  <>
-                                <span className={"nav-login-logout-spam"}>{authData.tokenData?.user_name}</span>
+                                <span className={"nav-login-logout-spam"}>{authContextData.tokenData?.user_name}</span>
                                 <a href={"#logout"} onClick={logoutHandleClik}> LOGOUT</a>
                                 </>
                             )

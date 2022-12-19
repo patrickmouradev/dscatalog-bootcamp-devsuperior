@@ -3,11 +3,14 @@ import ButtonIcon from 'components/ButtonIcon';
 import {useForm} from "react-hook-form";
 
 import './styles.css';
-import {getAuthData, requestBackendLogin, saveAuthData} from "../../../../util/requests";
-import {useState} from "react";
+import {getAuthData, getTokenData, requestBackendLogin, saveAuthData} from "../../../../util/requests";
+import {useContext, useState} from "react";
+import {AuthContext} from "../../../../AuthContext";
 
 
 const Login = () => {
+
+    const {setAuthContextData} =useContext(AuthContext);
 
     type FormData = {
         username: string;
@@ -26,6 +29,13 @@ const Login = () => {
                 setHasError(false);
                 saveAuthData(response.data);
                 const token = getAuthData().access_token;
+
+                //CASO DER CERTO O LOGIN ATUALIZAR O ESTADO GLOBAL DA AUTENTICACAO
+                setAuthContextData({
+                    authenticated:true,
+                    tokenData: getTokenData()
+                })
+
                 history.push('/admin')
                 console.log('SUCESSO', response);
             })
