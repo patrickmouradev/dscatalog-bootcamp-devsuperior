@@ -114,3 +114,21 @@ export const isAuthenticated =() : boolean  =>{
     return (tokenData && tokenData.exp *1000 > Date.now()) ? true : false;
 }
 
+
+//Funcao para saber se um determinado usuario tem permissao (ROLE) para acessar uma rota
+export const hasAnyRoles = (roles : Role[]) : boolean =>{
+    if (roles.length===0){
+        return true;
+    }
+    const tokenData = getTokenData();
+    if(tokenData !== undefined)
+        roles.forEach( role => {
+            if(tokenData.authorities.includes(role)){
+                return true
+            }
+        })
+
+    }
+    return false;
+
+}
