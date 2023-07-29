@@ -1,19 +1,48 @@
-.product-crud-card-card-top-container{
+.product-crud-card{
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+.product-crud-card-top-container{
     text-align: center;
     padding: 16px 0;
     border-bottom: 1px solid #E1E1E1;
 }
-.product-crud-card-card-top-container img{
+.product-crud-card-top-container img{
     width: 158px;
     height: 158px;
 }
 
-.product-crud-card-card-bottom-container{
+.product-crud-card-bottom-container{
     text-align: left;
     padding: 15px 20px 30px 20px;
 }
 
-.product-crud-card-card-bottom-container h6 {
+.product-crud-card-bottom-container h6 {
     color: #263238;
     font-size: 18px;
+}
+
+.product-crud-categories-container{
+    display: flex;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+.product-crud-card-buttons-container{
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.product-crud-card-button{
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: -0.015em;
+    border-radius: 10px;
+    width: 110px;
+    height: 40px;
+}
+.product-crud-card-button-first{
+    margin-right: 10px;
 }

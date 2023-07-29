@@ -1,7 +1,7 @@
 import './styles.css'
 import {ReactComponent as AuthImage} from 'assets/images/auth-image.svg';
 import {Route, Switch} from "react-router-dom";
-import Login from "./Login/index";
+import Login from "./Login/indesx";
 const Auth =() =>{
     return (
        <div className={"auth-container"}>

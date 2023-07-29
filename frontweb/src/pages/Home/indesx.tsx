@@ -1,5 +1,5 @@
 import {ReactComponent as MainImage} from 'assets/images/main-image.svg';
-import ButtonIcon from "../../components/ButtonIcon";
+import ButtonIcon from "../../components/ButtonIcon/indesx";
 import {Link} from 'react-router-dom';
 
 import './styles.css';

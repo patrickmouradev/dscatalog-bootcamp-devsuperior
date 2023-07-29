@@ -7,7 +7,7 @@ import {Product} from "../../types/product";
 import axios from "axios";
 import {BASE_URL} from "../../util/requests";
 import {useEffect, useState} from "react";
-import ProductDetailsLoader from "./ProductDetailsLoader";
+import ProductDetailsLoader from "./ProductDetailsLoader/indesx";
 import ProductInfoLoader from "./ProductInfoLoader";
 
 type UrlParams = {

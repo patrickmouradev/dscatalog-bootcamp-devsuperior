@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import ProductCard from "../../components/ProductCard/indesx";
 import {requestBackend} from "../../util/requests";
-import CardLoader from "./CardLoader";
+import CardLoader from "./CardLoader/indesx";
 import Pagination from "../../components/Pagination/indes";
 import {useEffect, useState} from "react";
 import {SpringPage} from "../../types/vendor/spring";

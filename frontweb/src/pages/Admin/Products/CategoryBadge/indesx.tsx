@@ -1,11 +1,14 @@
 import './styles.css'
-const CategoryBadge = () => {
+
+type Props = {
+    name : string
+}
+const CategoryBadge = ({name}: Props ) => {
 
     return (
-        <>
-        <h4>Categoria</h4>
-
-        </>
+        <div className={"category-badge-container"}>
+        <h4>{name}</h4>
+        </div>
     );
   
 }

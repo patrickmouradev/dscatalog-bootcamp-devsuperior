@@ -1,5 +1,5 @@
 import {Route, Switch} from "react-router-dom";
-import List from "./List";
+import List from "./List/indesx";
 import Form from "./Form/indesx";
 
 const Products =() =>{

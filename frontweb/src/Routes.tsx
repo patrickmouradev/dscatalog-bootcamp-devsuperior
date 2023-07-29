@@ -1,9 +1,9 @@
 import {Switch, Route, Redirect, Router} from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/Home/indesx";
 import Navbar from "./components/Navbar";
-import Calatog from "./pages/Calatog";
-import Admin from "./pages/Admin";
-import ProductDetails from "./pages/ProductDetails";
+import Calatog from "./pages/Calatog/indesx";
+import Admin from "./pages/Admin/indesx";
+import ProductDetails from "./pages/ProductDetails/indesx";
 import Auth from "./pages/Admin/Auth/indesx";
 import history from 'util/history';
 

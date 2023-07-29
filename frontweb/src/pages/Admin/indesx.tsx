@@ -1,10 +1,10 @@
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/indesx";
 
 import "./styles.css"
 import {Route, Switch} from "react-router-dom";
 import Users from "./Users";
 import PrivateRoute from "../../components/PrivateRoute";
-import Products from "./Products";
+import Products from "./Products/indesx";
 
 const Admin = () => {
   return (
