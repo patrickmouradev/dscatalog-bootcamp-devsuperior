@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/ProductCard/indesx";
 import {requestBackend} from "../../util/requests";
 import CardLoader from "./CardLoader";
 import Pagination from "../../components/Pagination/indes";

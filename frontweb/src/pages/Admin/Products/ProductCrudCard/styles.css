@@ -1,0 +1,19 @@
+.product-crud-card-card-top-container{
+    text-align: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #E1E1E1;
+}
+.product-crud-card-card-top-container img{
+    width: 158px;
+    height: 158px;
+}
+
+.product-crud-card-card-bottom-container{
+    text-align: left;
+    padding: 15px 20px 30px 20px;
+}
+
+.product-crud-card-card-bottom-container h6 {
+    color: #263238;
+    font-size: 18px;
+}
