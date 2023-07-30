@@ -4,19 +4,16 @@ import {Product} from "../../../../types/product";
 import {requestBackend} from "../../../../util/requests";
 import {AxiosRequestConfig} from "axios";
 import {useHistory, useParams} from "react-router-dom";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import Select from "react-select"
+import {Category} from "../../../../types/category";
 type UrlParams = {
     productId: string;
 }
 const Form = () => {
 
 
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-    ]
+
 
     const {productId} = useParams<UrlParams>();
 
@@ -26,6 +23,14 @@ const Form = () => {
     const history = useHistory();
 
     const {register, handleSubmit, formState: {errors}, setValue} = useForm<Product>();
+
+    useEffect(() => {
+
+        requestBackend({url: `/categories`}).then(response =>{
+            setSelectCategories(response.data.content)
+        })
+
+    },[] )
 
     useEffect(() => {
         if(isEditing){
@@ -62,6 +67,8 @@ const Form = () => {
             })
 
     };
+
+    const [selectCategories, setSelectCategories] = useState<Category[]>([])
 
     return (
         <div className={"product-crud-container"}>
@@ -106,9 +113,11 @@ const Form = () => {
                                 {/*/>*/}
                                 {/*<div className={"invalid-feedback d-block"}>{errors.price?.message}</div>*/}
                                 <Select
-                                options={options}
+                                options={selectCategories}
                                 classNamePrefix={"product-crud-select"}  //é o clasname no Select
                                 isMulti={true}
+                                getOptionLabel={(category: Category)=> category.name}
+                                getOptionValue={(category: Category)=> String(category.id)}
 
 
 
