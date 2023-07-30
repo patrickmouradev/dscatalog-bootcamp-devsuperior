@@ -20,11 +20,11 @@ const ProductCrudCard = ({product,onDelete} : Props) => {
 
         const config: AxiosRequestConfig = {
             method:"DELETE",
-            url:  `/products${productId}` ,
+            url:  `/products/${productId}` ,
             withCredentials: true
         };
 
-        requestBackend(config).then(()=>{
+        requestBackend(config).then(() => {
             onDelete();
         })
 

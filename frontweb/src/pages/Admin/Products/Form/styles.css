@@ -34,6 +34,24 @@
     border-radius: 10px;
 }
 
+.product-crud-select__control{
+    border-radius: 10px !important;
+    font-size: 1em;
+    letter-spacing: -0.015em;
+    color: #263238;
+    height: 50px;
+
+}
+
+/*para alterar a cor do place holder*/
+.product-crud-select__placeholder{
+    color: #9E9E9E !important;
+}
+/*para tirar a barra do separador*/
+.product-crud-select__indicator-separator{
+    display: none;
+}
+
 @media (min-width: 576px) {
     .product-crud-buttons-container {
         justify-content: flex-end;

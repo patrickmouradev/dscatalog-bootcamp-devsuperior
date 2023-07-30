@@ -1,18 +1,22 @@
 import './styles.css'
 import {useForm} from "react-hook-form";
 import {Product} from "../../../../types/product";
-import {requestBackend, requestBackendLogin} from "../../../../util/requests";
-import {getAuthData, saveAuthData} from "../../../../util/storage";
-import {getTokenData} from "../../../../util/auth";
+import {requestBackend} from "../../../../util/requests";
 import {AxiosRequestConfig} from "axios";
 import {useHistory, useParams} from "react-router-dom";
 import {useEffect} from "react";
-import * as url from "url";
-
+import Select from "react-select"
 type UrlParams = {
     productId: string;
 }
 const Form = () => {
+
+
+    const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ]
 
     const {productId} = useParams<UrlParams>();
 
@@ -81,6 +85,39 @@ const Form = () => {
                                 />
                                 <div className={"invalid-feedback d-block"}>{errors.name?.message}</div>
                             </div>
+
+
+
+                            <div className={"margin-bottom-30"}>
+
+
+
+                                {/*<input*/}
+                                {/*    {...register("price", //o register esta vindo do useForm  , o nome do campo é de acordo com o type Product declarado*/}
+                                {/*        {*/}
+                                {/*            required: 'Campo Obrigatorio', //mensagem no campo requerido que não está preenchido*/}
+
+                                {/*        })}*/}
+                                {/*    type="text"*/}
+                                {/*    className={`form-control base-input ${errors.price? 'is-invalid':''}`}//condição ternaria para aparecer a borda de invalida no input*/}
+                                {/*    placeholder="Preço"*/}
+                                {/*    name="price" // o name tem que ser o mesmo do typeFormdata e do register*/}
+
+                                {/*/>*/}
+                                {/*<div className={"invalid-feedback d-block"}>{errors.price?.message}</div>*/}
+                                <Select
+                                options={options}
+                                classNamePrefix={"product-crud-select"}  //é o clasname no Select
+                                isMulti={true}
+
+
+
+                                />
+
+
+
+                            </div>
+
                             <div className={"margin-bottom-30"}>
                                 <input
                                     {...register("price", //o register esta vindo do useForm  , o nome do campo é de acordo com o type Product declarado
